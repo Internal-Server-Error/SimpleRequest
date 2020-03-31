@@ -1,3 +1,5 @@
+#Version 1.0
+
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
