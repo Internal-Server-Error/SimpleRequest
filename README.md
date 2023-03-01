@@ -1,2 +1,2 @@
 # SimpleRequest
-An app to execute web requests in a single powershell script.
+A simple tool to execute web requests build in a single powershell script.

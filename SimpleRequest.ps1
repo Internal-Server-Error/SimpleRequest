@@ -1,7 +1,17 @@
-#Version 1.0
+#Version 2.0
 
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.Application]::EnableVisualStyles()
+
+Add-Type -Name Window -Namespace Console -MemberDefinition '
+[DllImport("Kernel32.dll")]
+public static extern IntPtr GetConsoleWindow();
+
+[DllImport("user32.dll")]
+public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);
+'
+$consolePtr = [Console.Window]::GetConsoleWindow()
+[Console.Window]::ShowWindow($consolePtr, 0)
 
 $SimpleRequest = New-Object system.Windows.Forms.Form
 $SimpleRequest.ClientSize = '800,600'
@@ -59,12 +69,12 @@ $Url.text = 'https://localhost/test'
 
 $Go = New-Object system.Windows.Forms.Button
 $Go.BackColor = "#7ed321"
-$Go.text = "Go"
+$Go.text = "Send"
 $Go.width = 57
-$Go.height = 20
+$Go.height = 25
 $Go.Anchor = 'top,right'
-$Go.location = New-Object System.Drawing.Point(736, 22)
-$Go.Font = 'Comic Sans MS,11,style=Bold'
+$Go.location = New-Object System.Drawing.Point(736, 21)
+$Go.Font = 'Consolas,11,style=Bold'
 $Go.ForeColor = "#000000"
 
 $Method = New-Object system.Windows.Forms.ComboBox
@@ -149,7 +159,7 @@ $ConvertButton = New-Object system.Windows.Forms.Button
 $ConvertButton.text = "Convert"
 $ConvertButton.width = 784
 $ConvertButton.height = 20
-$ConvertButton.Anchor = 'left,right'
+$ConvertButton.Anchor = 'top,right,left'
 $ConvertButton.location = New-Object System.Drawing.Point(8, 255)
 $ConvertButton.Font = 'Consolas,12'
 
